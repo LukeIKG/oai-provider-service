@@ -19,7 +19,7 @@ jobs:
     - name: Run Docker container
       env:
         LOG_LEVEL: debug
-      run: docker run -e LOG_LEVEL=${{ env.LOG_LEVEL }} -d oai
+      run: docker run -e LOG_LEVEL=${{ env.LOG_LEVEL }} -d lukeikg/oai:latest
 
     - name: Push Docker image
       env:
@@ -27,4 +27,4 @@ jobs:
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       run: |
         echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-        docker push oai
+        docker push lukeikg/oai:latest
