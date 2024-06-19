@@ -13,8 +13,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Build Docker image
-      run: docker build -t oai .
+   - name: Build Docker image
+  run: docker build -t lukeikg/oai:latest .
 
     - name: Run Docker container
       env:
