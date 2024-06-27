@@ -1,20 +1,38 @@
 {
-  "name": "oai-provider-service",
+  "name": "OAI-PMH-Service",
   "version": "1.0.0",
-  "description": "None",
+  "description": "A standalone OAI-PMH provider for Nodejs that can support multiple data sources.",
   "main": "index.js",
-  "directories": {
-    "doc": "docs",
-    "test": "test"
+  "license": "GPL-3.0",
+  "repository": "https://github.com/hatfieldlibrary/oai-provider-service",
+  "engines": {
+    "node": ">=18.0.0"
   },
   "scripts": {
-    "compile": "tsc src/index.ts",
-    "start": "node src/index.js"
+    "clean": "gulp dist-clean",
+    "distclean": "gulp dist-clean && gulp build && gulp copy-production",
+    "ourcompile": "tsc src/index.ts",
+    "compile": "gulp dist-clean && gulp build && gulp copy-production",
+    "start": "cd dist && NODE_ENV=production node index",
+    "dev": "gulp build && gulp copy && cd dist && node index | pino -o 'short'",
+    "test": "node build.js && mocha  --extension [\"ts\"] 'test/**/*.ts'"
   },
-  "author": "",
-  "license": "ISC",
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "chai": "^5.1.1",
+    "gulp": "^5.0.0",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "jsdom": "^24.1.0",
+    "mocha": "^10.4.0",
+    "rimraf": "^5.0.7",
+    "sinon": "^18.0.0",
+    "source-map-support": "^0.5.21",
+    "supertest": "^7.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
   "dependencies": {
-    "@types/node": "^20.14.2",
+    "@types/node": "^20.14.9",
     "bluebird": "^3.7.2",
     "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
@@ -24,8 +42,8 @@
     "http-auth": "^4.2.0",
     "lodash": "^4.17.21",
     "mongodb": "^6.7.0",
-    "pino": "^9.1.0",
-    "typescript": "^5.4.5",
+    "node": "^20.15.0",
+    "pino": "^9.2.0",
     "xml": "^1.0.1",
     "xmldom": "^0.6.0"
   }
